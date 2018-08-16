@@ -3,6 +3,13 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-screeps')
     grunt.loadNpmTasks('grunt-contrib-clean')
     grunt.loadNpmTasks('grunt-contrib-copy')
+    grunt.loadNpmTasks('grunt-file-append')
+
+    var currentdate = new Date();
+
+    // Output the current date and branch.
+    grunt.log.subhead('Task Start: ' + currentdate.toLocaleString())
+    grunt.log.writeln('Branch: ' + branch)
 
     grunt.initConfig({
         screeps: {
@@ -39,7 +46,19 @@ module.exports = function(grunt) {
             }],
           }
         },
+
+        file_append: {
+          versioning: {
+            files: [
+              {
+                append: "\nglobal.SCRIPT_VERSION = "+ currentdate.getTime() + "\n",
+                input: 'dist/version.js',
+              }
+            ]
+          }
+        },
+
     })
 
-    grunt.registerTask('default',  ['clean', 'copy:screeps', 'screeps']);
+    grunt.registerTask('default',  ['clean', 'copy:screeps', 'file_append:versioning', 'screeps']);
 }
