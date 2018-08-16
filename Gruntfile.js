@@ -70,8 +70,6 @@ module.exports = function(grunt) {
             ]
           }
         },
-
-    })
     })
 
     grunt.registerTask('default',  ['clean', 'copy:screeps', 'file_append:versioning', 'screeps']);
