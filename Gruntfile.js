@@ -9,7 +9,7 @@ module.exports = function(grunt) {
 
     // Output the current date and branch.
     grunt.log.subhead('Task Start: ' + currentdate.toLocaleString())
-    grunt.log.writeln('Branch: ' + branch)
+    grunt.log.writeln('Branch: default')
 
     grunt.initConfig({
         screeps: {
