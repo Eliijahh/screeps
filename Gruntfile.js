@@ -1,23 +1,21 @@
 module.exports = function(grunt) {
 
+    var config = require('./.screeps.json')
+    var branch = grunt.option('branch') || config.branch;
+    var email = grunt.option('email') || config.email;
+    var password = grunt.option('password') || config.password;
+    var ptr = grunt.option('ptr') ? true : config.ptr
+
     grunt.loadNpmTasks('grunt-screeps')
     grunt.loadNpmTasks('grunt-contrib-clean')
     grunt.loadNpmTasks('grunt-contrib-copy')
-    grunt.loadNpmTasks('grunt-file-append')
-
-    var currentdate = new Date();
-
-    // Output the current date and branch.
-    grunt.log.subhead('Task Start: ' + currentdate.toLocaleString())
-    grunt.log.writeln('Branch: ' + branch)
-
 
     grunt.initConfig({
         screeps: {
             options: {
-                email: paolo.caponeri@gmail.com,
-                password: Piergio92!,
-                branch: default,
+                email: email,
+                password: password,
+                branch: branch,
                 ptr: ptr
             },
             dist: {
@@ -47,20 +45,7 @@ module.exports = function(grunt) {
             }],
           }
         },
-
-        // Add version variable using current timestamp.
-        file_append: {
-          versioning: {
-            files: [
-              {
-                append: "\nglobal.SCRIPT_VERSION = "+ currentdate.getTime() + "\n",
-                input: 'dist/version.js',
-              }
-            ]
-          }
-        },
-
     })
 
-    grunt.registerTask('default',  ['clean', 'copy:screeps', 'file_append:versioning', 'screeps']);
+    grunt.registerTask('default',  ['clean', 'copy:screeps', 'screeps']);
 }
