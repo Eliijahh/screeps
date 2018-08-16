@@ -21,9 +21,9 @@ module.exports = function(grunt) {
     grunt.initConfig({
         screeps: {
             options: {
-                email: paolo.caponeri@gmail.com,
-                password: Piergio92!,
-                branch: default,
+                email: email,
+                password: password,
+                branch: branch,
                 ptr: ptr
             },
             dist: {
