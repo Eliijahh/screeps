@@ -5,10 +5,23 @@ module.exports = function(grunt) {
     var email = grunt.option('email') || config.email;
     var password = grunt.option('password') || config.password;
     var ptr = grunt.option('ptr') ? true : config.ptr
+    require('version')
+    if(!Memory.SCRIPT_VERSION || Memory.SCRIPT_VERSION != SCRIPT_VERSION) {
+        Memory.SCRIPT_VERSION = SCRIPT_VERSION
+        console.log('New code uplodated')
+    }
 
     grunt.loadNpmTasks('grunt-screeps')
     grunt.loadNpmTasks('grunt-contrib-clean')
     grunt.loadNpmTasks('grunt-contrib-copy')
+    grunt.loadNpmTasks('grunt-file-append')
+
+    var currentdate = new Date();
+
+    // Output the current date and branch.
+    grunt.log.subhead('Task Start: ' + currentdate.toLocaleString())
+    grunt.log.writeln('Branch: ' + branch)
+
 
     grunt.initConfig({
         screeps: {
@@ -21,7 +34,7 @@ module.exports = function(grunt) {
             dist: {
                 src: ['dist/*.js']
             }
-        },
+        }
 
         // Remove all files from the dist folder.
         clean: {
@@ -45,7 +58,21 @@ module.exports = function(grunt) {
             }],
           }
         },
+
+        // Add version variable using current timestamp.
+        file_append: {
+          versioning: {
+            files: [
+              {
+                append: "\nglobal.SCRIPT_VERSION = "+ currentdate.getTime() + "\n",
+                input: 'dist/version.js',
+              }
+            ]
+          }
+        },
+
+    })
     })
 
-    grunt.registerTask('default',  ['clean', 'copy:screeps', 'screeps']);
+    grunt.registerTask('default',  ['clean', 'copy:screeps', 'file_append:versioning', 'screeps']);
 }
