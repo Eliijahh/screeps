@@ -5,11 +5,6 @@ module.exports = function(grunt) {
     var email = grunt.option('email') || config.email;
     var password = grunt.option('password') || config.password;
     var ptr = grunt.option('ptr') ? true : config.ptr
-    require('version')
-    if(!Memory.SCRIPT_VERSION || Memory.SCRIPT_VERSION != SCRIPT_VERSION) {
-        Memory.SCRIPT_VERSION = SCRIPT_VERSION
-        console.log('New code uplodated')
-    }
 
     grunt.loadNpmTasks('grunt-screeps')
     grunt.loadNpmTasks('grunt-contrib-clean')
