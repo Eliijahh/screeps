@@ -1,11 +1,11 @@
 module.exports = {
 
-    var harvester = require('creeps_harvester')
+    var creeps_harvester = require('creeps_harvester')
 
     main() {
         for(var i in Game.creeps) {
             switch (Game.creeps[i].memory) {
-                case 'harvester': harvester.main(Game.creeps[i]);
+                case 'harvester': creeps_harvester.main(Game.creeps[i]);
                     break;
             }
         }
