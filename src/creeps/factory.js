@@ -9,8 +9,8 @@ module.exports = {
             }
         }
 
-        if(harvesters.length < 3 && Game.spawns['Spawn 1'].energyAvailable >= 200) {
-            Game.spawns['Spawn 1'].spawnCreep([WORK, CARRY, MOVE], "Bruno" + Game.time.toString(), {memory: {role: "harvester"}});
+        if(harvesters.length < 3 && Game.spawns['Citadel'].energyAvailable >= 200) {
+            Game.spawns['Citadel'].spawnCreep([WORK, CARRY, MOVE], "Bruno" + Game.time.toString(), {memory: {role: "harvester"}});
         }
 
     }
