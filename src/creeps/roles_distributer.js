@@ -1,6 +1,6 @@
-module.exports = {
+var harvester = require("creeps_harvester");
 
-    var harvester = require('creeps_harvester');
+module.exports = {
 
     main() {
         for(var i in Game.creeps) {
