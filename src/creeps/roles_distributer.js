@@ -4,7 +4,7 @@ module.exports = {
 
     main() {
         for(var i in Game.creeps) {
-            switch (Game.creeps[i].memory) {
+            switch (Game.creeps[i].memory.role) {
                 case 'harvester': harvester.main(Game.creeps[i]);
                     break;
             }
