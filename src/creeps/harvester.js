@@ -6,7 +6,7 @@ module.exports = {
 
         //TODO not full of resources
             //TODO find their assigned resource
-            //TODO go 
+            //TODO go to the assigned resource
             //TODO mine
     }
 }
